@@ -1,0 +1,75 @@
+<%= simple_form_for @examination do |f| %>
+  <div class="container">
+    <%= f.input :situation, label: 'Situazione' %>
+
+    <div class="row no-gutters parameters">
+      <%= f.input :pa_max, label: 'PA sist' %> /
+      <%= f.input :pa_min, label: 'PA diast' %>
+      <%= f.input :bpm, label: 'Freq. Card' %>
+      <%= f.input :breath_freq, label: 'Freq. Resp' %>
+      <%= f.input :temperature, label: 'TC' %>
+      <%= f.input :temperature, label: 'TC' %>
+    </div>
+    <hr>
+    <div class="row no-gutters">
+      <div class="col-2 pr-2">
+        <%= f.input :skin, as: :select, collection: ['Normale', 'Pallida', 'Itterica', 'Cianotica'], label: 'Pelle' %>
+      </div>
+      <div class="col-2 pr-2">
+        <%= f.input :hydration, label: 'Idratazione' %>
+      </div>
+      <div class="col-2 pr-2">
+        <%= f.input :nutrition, label: 'Stato nutrizionale' %>
+      </div>
+      <div class="col-2 pr-2">
+        <%= f.input :diuresis, label: 'Diuresi' %>
+      </div>
+      <div class="col-2">
+        <%= f.input :alvo, label: 'Alvo' %>
+      </div>
+    </div>
+    <hr>
+
+    <!-- EO Apparati -->
+    <div class="row">
+      <!-- Neuro -->
+      <div class="col-4">
+        <div class="border p-2">
+          <h5>Sistema Nervoso</h5>
+          <hr>
+          <%= f.input :nerv_normal, as: :boolean, label: 'Normale' %>
+          <%= f.input :nerv_cosc_clouded, as: :boolean, label: 'Coscenza obnubilata' %>
+          <%= f.input :nerv_cosc_absent, as: :boolean, label: 'Coscenza assente' %>
+          <%= f.input :nerv_convulsion, as: :boolean, label: 'Convulsioni' %>
+          <%= f.input :nerv_romberg, as: :boolean, label: 'Romberg' %>
+          <%= f.input :nerv_rigor, as: :boolean, label: 'Rigor Nucalis' %>
+          <%= f.input :nerv_motor_deficit, as: :boolean, label: 'Defici Motorio' %>
+          <%= f.input :nerv_sens_deficit, as: :boolean, label: 'Defici Sensitivo' %>
+        </div>
+      </div>
+      <!-- END Neuro -->
+
+      <!-- Occhi e cardio -->
+      <div class="col-4">
+        <div class="border p-2">
+
+        </div>
+      </div>
+      <!-- END Occhi e cardio -->
+
+      <!-- Cuore e addome -->
+      <div class="col-4">
+        <div class="border p-2">
+
+        </div>
+      </div>
+      <!-- Cuore e addome -->
+
+    </div>
+    <!-- END EO Apparati -->
+  </div>
+
+
+  <%= f.submit 'Salva', class: 'btn btn-primary' %>
+</div>
+<% end %>

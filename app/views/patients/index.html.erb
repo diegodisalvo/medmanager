@@ -1,0 +1,26 @@
+<div class="container my-5">
+  <h1>Pazienti</h1>
+</div>
+
+<div class="container">
+  <table class="table table-striped">
+    <thead>
+      <th>Id</th>
+      <th>Nome</th>
+      <th>Cognome</th>
+      <th>Link</th>
+      <th>Modifica</th>
+    </thead>
+    <tbody>
+      <% @patients.each do |patient| %>
+        <tr>
+          <td><%= patient.id %></td>
+          <td><%= patient.fname %></td>
+          <td><%= patient.lname %></td>
+          <td><%= link_to patient_path(patient) do %><%= fa_icon 'link' %><% end %></td>
+          <td><%= link_to edit_patient_path(patient) do %><%= fa_icon 'pencil-alt' %><% end %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -3,3 +3,4 @@
 //= require jquery3
 //= require popper
 //= require bootstrap
+//= require font_awesome5

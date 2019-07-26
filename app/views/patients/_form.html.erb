@@ -1,0 +1,10 @@
+<%= simple_form_for @patient do |f| %>
+  <%= f.input :fname %>
+  <%= f.input :lname %>
+  <%= f.input :fiscalcode %>
+  <%= f.input :address %>
+  <%= f.input :city %>
+  <%= f.input :province %>
+
+  <%= f.submit 'Salva', class: 'btn btn-primary' %>
+<% end %>

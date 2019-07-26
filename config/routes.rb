@@ -1,4 +1,19 @@
 Rails.application.routes.draw do
   devise_for :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  root "patients#index"
+
+  resources :patients do
+    member do
+      get :delete
+      post :destory
+    end
+  end
+
+  resources :examinations do
+    member do
+      get :delete
+      post :destroy
+    end
+  end
 end

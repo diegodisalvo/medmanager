@@ -1,0 +1,33 @@
+<div class="container my-5">
+  <div class="row">
+    <div class="col-4 align-self-center">
+      <h1>Esami</h1>
+    </div>
+    <div class="col-4 align-self-center">
+    </div>
+    <div class="col-4 align-self-center">
+      <% if allowed_to?(:new?) %>
+        <%= link_to 'Nuovo esame', new_examination_path, class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="container my-5">
+  <table class="table table-striped">
+    <thead>
+      <th>Id</th>
+      <th>Data</th>
+      <th>Paziente</th>
+    </thead>
+    <tbody>
+      <% @examinations.each do |examination| %>
+        <tr>
+          <td><%= examination.id %></td>
+          <td><%= examination.created_at %></td>
+          <td><%= examination.patient.fullname %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

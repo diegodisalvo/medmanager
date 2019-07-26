@@ -1,0 +1,21 @@
+<div class="container my-5">
+  <div class="row">
+    <div class="col-4 align-self-center">
+      <p class="m-0 p-0">Scheda paziente</p>
+      <h1><%= @patient.fullname %></h1>
+    </div>
+
+    <div class="col-4 align-self-center">
+
+    </div>
+
+    <div class="col-4 align-self-center">
+      <%= link_to 'Modifica scheda paziente', edit_patient_path(@patient), class: 'btn btn-primary' %>
+    </div>
+  </div>
+  <hr>
+</div>
+
+<div class="container my-5">
+  <p>Dati del paziente</p>
+</div>

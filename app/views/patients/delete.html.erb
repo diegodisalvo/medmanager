@@ -1,0 +1,8 @@
+<div class="container my-5">
+  <h1>Eliminare Record</h1>
+  <h5><%= @patient.fullname %></h5>
+</div>
+<div class="container my-5">
+  <p>L'eliminazione del record dal database è un'azione irreversibile.</p>
+  <%= link_to 'Elimina Record Paziente', destroy_patient_path(@patient), method: :post, data: { confirm: 'Confermare eliminazione del record '} %>
+</div>

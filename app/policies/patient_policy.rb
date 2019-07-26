@@ -1,0 +1,2 @@
+class PatientPolicy < ApplicationPolicy
+end
