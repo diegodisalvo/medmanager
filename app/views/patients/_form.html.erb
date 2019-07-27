@@ -1,10 +1,22 @@
-<%= simple_form_for @patient do |f| %>
-  <%= f.input :fname %>
-  <%= f.input :lname %>
-  <%= f.input :fiscalcode %>
-  <%= f.input :address %>
-  <%= f.input :city %>
-  <%= f.input :province %>
+<div class="fluid-container">
+  <%= simple_form_for :patient, url: '../patients', authenticity_token: true, remote: true, method: :post do |f| %>
+  <div class="form-row">
+    <div class="col-sm-6"><%= f.input :fname, label: 'Nome' %></div>
+    <div class="col-sm-6"><%= f.input :lname, label: 'Cognome' %></div>
+  </div>
+  <div class="form-row">
+    <div class="col-sm-6"><%= f.input :fiscalcode, label: 'Codice fiscale' %></div>
+    <div class="col-sm-6"><%= f.input :birth_date, as: :date, start_year: 1900, end_year: Date.today.year, order: [:day, :month, :year], label: 'Data di nascita' %></div>
+  </div>
+  <div class="form-row">
+    <div class="col-sm-6"><%= f.input :address, label: 'Indirizzo' %></div>
+    <div class="col-sm-3"><%= f.input :city, label: 'Città' %></div>
+    <div class="col-sm-3"><%= f.input :province, label: 'Provincia' %></div>
+  </div>
 
+  <% if :after_form %>
+    <%= f.input :create_patient_and_exam, as: :hidden, input_html: { value: true } %>
+  <% end %>
   <%= f.submit 'Salva', class: 'btn btn-primary' %>
-<% end %>
+  <% end %>
+</div>

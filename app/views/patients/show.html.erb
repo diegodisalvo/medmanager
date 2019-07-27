@@ -10,7 +10,12 @@
     </div>
 
     <div class="col-4 align-self-center">
-      <%= link_to 'Modifica scheda paziente', edit_patient_path(@patient), class: 'btn btn-primary' %>
+      <% if allowed_to?(:edit?, @patient) %>
+        <%= link_to 'Modifica scheda paziente', edit_patient_path(@patient), class: 'btn btn-primary' %>
+      <% end %>
+      <% if allowed_to?(:new?) %>
+        <%= link_to 'Nuovo Esame', new_examination_path(patient_id: @patient), class: 'btn btn-secondary' %>
+      <% end %>
     </div>
   </div>
   <hr>
@@ -18,4 +23,26 @@
 
 <div class="container my-5">
   <p>Dati del paziente</p>
+</div>
+
+<div class="container my-5">
+  <h3 class="pb-3">Accessi del paziente: <%= @patient.examinations.count %></h3>
+  <table class="table table-striped">
+    <thead>
+      <th width="150">Data</th>
+      <th width="400">Situazione</th>
+      <th>Esito</th>
+      <th width="100">Link</th>
+    </thead>
+    <tbody>
+      <% @patient.examinations.each do |exam| %>
+        <tr>
+          <td><%= exam.created_at.strftime("%d/%m/%y") %></td>
+          <td><%= exam.situation %></td>
+          <td><%= exam.result %></td>
+          <td><%= link_to examination_path(exam) do %><%= fa_icon 'arrow-right' %><% end %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>

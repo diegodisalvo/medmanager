@@ -1,0 +1,15 @@
+<div class="container mt-3 border">
+  <div class="row">
+    <div class="col-sm-6 p-2">
+      <h2><%= patient.fullname %></h2>
+      <p><%= patient.fiscalcode %></p>
+    </div>
+    <div class="col-sm-6 p-2">
+      <p>Numero di accessi</p>
+    </div>
+    <hr>
+  </div>
+    <div class="row justify-content-center p-2">
+      <%= link_to 'Nuovo accesso', new_examination_path(patient_id: patient.id) %>
+    </div>
+</div>

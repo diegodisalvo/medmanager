@@ -27,10 +27,16 @@ gem 'jbuilder', '~> 2.7'
 
 gem 'devise'
 gem 'simple_form'
+gem 'faker'
+gem 'rails-autocomplete'
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 gem 'font_awesome5_rails'
 gem 'action_policy'
+gem 'select2-rails'
+gem 'underscore-rails'
+
+gem 'rails-i18n'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false

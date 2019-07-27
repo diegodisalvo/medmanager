@@ -1,8 +1,25 @@
 class PatientsController < ApplicationController
   before_action :authenticate_user!
+  autocomplete :patient, :lname
 
   def index
     @patients = Patient.order(lname: :asc)
+  end
+
+  def search
+    if params.has_key?(:search)
+      @patients = Patient.search(params[:search][:query]).order(lname: :asc)
+      respond_to do |format|
+        format.js do
+          if @patients.blank?
+            @after_form = true
+            render 'new'
+          else
+            render 'search'
+          end
+        end
+      end
+    end
   end
 
   def show
@@ -17,7 +34,11 @@ class PatientsController < ApplicationController
     @patient = Patient.new(patient_params)
     if @patient.save
       flash[:notice] = "Paziente aggiunto correttamente"
-      redirect_to patient_path(@patient)
+      if params[:patient][:create_patient_and_exam]
+        redirect_to new_examination_path(patient_id: @patient)
+      else
+        redirect_to patient_path(@patient)
+      end
     end
   end
 
@@ -29,6 +50,7 @@ class PatientsController < ApplicationController
     @patient = Patient.find(params[:id])
     @patient.update(patient_params)
     flash[:notice] = "Dati paziente aggiornati"
+    redirect_to patient_path(@patient)
   end
 
   def delete
@@ -48,7 +70,8 @@ class PatientsController < ApplicationController
                                     :fiscalcode,
                                     :address,
                                     :city,
-                                    :province
+                                    :province,
+                                    :birth_date
                                   )
   end
 end

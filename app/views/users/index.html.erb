@@ -1,0 +1,24 @@
+<div class="container my-5">
+  <h1>Operatori</h1>
+  <p>Di seguito i nomi degli operatori e le sedi dove possono lavorare</p>
+</div>
+<div class="container mb-5">
+  <div class="row">
+    <% @users.each do |user| %>
+      <div class="col-3">
+        <%= link_to user_path(user) do %>
+          <div class="p-3 border">
+            <h5><%= user.fullname %></h5>
+            <ul>
+              <% if user.locations.present? %>
+                <% user.locations.each do |loc| %>
+                  <li><%= loc.title %></li>
+                <% end %>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

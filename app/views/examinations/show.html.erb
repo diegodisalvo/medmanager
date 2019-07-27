@@ -1,4 +1,243 @@
 <div class="container my-5">
-  <h1><%= @examination.created_at %></h1>
-  <p class="m-0 p-0">Modulo M</p>
+  <div class="row pb-3 border-bottom">
+    <div class="col-sm-4 align-self-center">
+      <p class="m-0 p-0">Modulo M</p>
+      <h1><%= link_to @examination.patient.fullname, patient_path(@examination.patient) %></h1>
+      <h4><%= l @examination.exam_time, format: :long %></h4>
+    </div>
+    <div class="col-sm-4 align-self-center">
+      <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Data di nascita
+          <span class="badge badge-primary badge-pill"><%= @examination.patient.birth_date.strftime("%d %B %Y") %></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Età:
+          <span class="badge badge-primary badge-pill"><%= @examination.patient.age %></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Città di residenza
+          <span class="badge badge-primary badge-pill"><%= @examination.patient.city %></span>
+        </li>
+      </ul>
+    </div>
+    <div class="col-sm-4 align-self-center px-4 text-md-right">
+      <p class="m-0">Compilato dal medico</p>
+      <h4><%= @examination.user.email %></h4>
+    </div>
+  </div>
+</div>
+
+<div class="container bg-light p-4">
+  <div class="row">
+    <div class="col-sm-8 border-right">
+      <div class="pb-3">
+        <h3>Situazione</h3>
+        <p><%= @examination.situation %></p>
+      </div>
+      <div class="py-3">
+        <h3>Altro</h3>
+        <p><%= @examination.other %></p>
+      </div>
+    </div> <!-- END Col 8 -->
+
+    <div class="col-sm-4 pl-4">
+      <div class="pb-3">
+        <h3>Terapia e diagnosi</h3>
+        <p><%= @examination.therapy %></p>
+      </div>
+      <div class="py-3">
+        <h3>Esito</h3>
+        <p><%= @examination.result %></p>
+      </div>
+    </div> <!-- END Col 4 -->
+  </div>
+</div>
+
+<div class="container my-4">
+  <div class="row justify-content-center">
+    <ul class="list-group list-group-horizontal ml-3 mb-3">
+      <li class="list-group-item">Pelle: <%= @examination.skin %></li>
+      <li class="list-group-item">Idratazione: <%= @examination.hydration %></li>
+      <li class="list-group-item">Stato nutrizionale: <%= @examination.nutrition %></li>
+      <li class="list-group-item">Diuresi: <%= @examination.diuresis %></li>
+      <li class="list-group-item">Alvo: <%= @examination.alvo %></li>
+    </ul>
+    <ul class="list-group list-group-horizontal">
+      <li class="list-group-item" data-toggle="tooltip" data-placement="top" title="Pressione Arteriosa">PA: <%= @examination.pa_max %> / <%= @examination.pa_min %></li>
+      <li class="list-group-item" data-toggle="tooltip" data-placement="top" title="Frequenza Cardiaca">FC: <%= @examination.bpm %></li>
+      <li class="list-group-item" data-toggle="tooltip" data-placement="top" title="Frequenza respiratoria">FR: <%= @examination.breath_freq %></li>
+      <li class="list-group-item" data-toggle="tooltip" data-placement="top" title="Temperatura corporea">TC: <%= @examination.temperature %>°</li>
+    </ul>
+  </div>
+</div>
+
+<div class="container my-4">
+  <div class="row">
+    <!-- sistema nervoso -->
+    <div class="col-sm-4">
+      <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center bg-light">
+          <h3 class="m-0">Sistema nervoso</h3>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Normale
+          <span class="badge"><%= boolean(@examination.nerv_normal) %></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Coscenza obnubilata
+          <span class="badge"><%= boolean(@examination.nerv_cosc_clouded) %></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Coscenza assente
+          <span class="badge"><%= boolean(@examination.nerv_cosc_absent) %></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Convulsioni
+          <span class="badge"><%= boolean(@examination.nerv_convulsion) %></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Romberg
+          <span class="badge"><%= boolean(@examination.nerv_romberg) %></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Rigor Nucalis
+          <span class="badge"><%= boolean(@examination.nerv_rigor) %></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Deficit motorio
+          <span class="badge"><%= boolean(@examination.nerv_motor_deficit) %></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Deficit sensitivo
+          <span class="badge"><%= boolean(@examination.nerv_sens_deficit) %></span>
+        </li>
+      </ul>
+    </div>
+    <!-- END sistema nervoso -->
+
+    <!-- Occhio -->
+    <div class="col-sm-4">
+      <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center bg-light">
+          <h3 class="m-0">Pupille</h3>
+          <span class="badge">Dx</span>
+          <span class="badge">Sx</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <p>Normale</p>
+          <span class="badge"><%= boolean(@examination.pupils_normal_dx) %></span>
+          <span class="badge"><%= boolean(@examination.pupils_normal_sx) %></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <p>Miosi</p>
+          <span class="badge"><%= boolean(@examination.pupils_miosis_dx) %></span>
+          <span class="badge"><%= boolean(@examination.pupils_miosis_sx) %></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <p>Midriasi</p>
+          <span class="badge"><%= boolean(@examination.pupils_mydr_dx) %></span>
+          <span class="badge"><%= boolean(@examination.pupils_mydr_sx) %></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <p>R. Fotom.</p>
+          <span class="badge"><%= boolean(@examination.pupils_fotoreflex_dx) %></span>
+          <span class="badge"><%= boolean(@examination.pupils_fotoreflex_sx) %></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <p>Nistagmo</p>
+          <span class="badge"><%= boolean(@examination.pupils_nystagmus_dx) %></span>
+          <span class="badge"><%= boolean(@examination.pupils_nystagmus_sx) %></span>
+        </li>
+      </ul>
+
+      <ul class="list-group mt-3">
+        <li class="list-group-item d-flex justify-content-between align-items-center bg-light">
+          <h3 class="m-0" style="width: 70px">Resp.</h3>
+          <span class="badge">Dx</span>
+          <span class="badge">Sx</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <p>Normale</p>
+          <span class="badge"><%= boolean(@examination.lung_normal_dx) %></span>
+          <span class="badge"><%= boolean(@examination.lung_normal_sx) %></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <p>Rumori</p>
+          <span class="badge"><%= boolean(@examination.lung_rumor_dx) %></span>
+          <span class="badge"><%= boolean(@examination.lung_rumor_sx) %></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <p>Rumori secchi</p>
+          <span class="badge"><%= boolean(@examination.lung_dry_rumor_dx) %></span>
+          <span class="badge"><%= boolean(@examination.lung_dry_rumor_sx) %></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <p>Enfisema</p>
+          <span class="badge"><%= boolean(@examination.lung_emphysema_dx) %></span>
+          <span class="badge"><%= boolean(@examination.lung_emphysema_sx) %></span>
+        </li>
+      </ul>
+    </div>
+    <!-- END Occhio e polmone -->
+
+    <!-- Cuore ed addome -->
+    <div class="col-sm-4">
+      <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center bg-light">
+          <h3 class="m-0">App. Cardiocircolatorio</h3>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <p>Normale</p>
+          <span class="badge"><%= boolean(@examination.heart_normal) %></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <p>Aritmia</p>
+          <span class="badge"><%= boolean(@examination.heart_arhythmia) %></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <p>Cianosi</p>
+          <span class="badge"><%= boolean(@examination.heart_cyanosis) %></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <p>Edema</p>
+          <span class="badge"><%= boolean(@examination.heart_edema) %></span>
+        </li>
+      </ul>
+
+      <ul class="list-group mt-3">
+        <li class="list-group-item d-flex justify-content-between align-items-center bg-light">
+          <h3 class="m-0" style="width: 70px">Addome</h3>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <p>Murphy</p>
+          <span class="badge"><%= boolean(@examination.abdomen_murphy) %></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <p>Blumberg</p>
+          <span class="badge"><%= boolean(@examination.abdomen_blumberg) %></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <p>Rovsing</p>
+          <span class="badge"><%= boolean(@examination.abdomen_rovsing) %></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <p>Ascite</p>
+          <span class="badge"><%= boolean(@examination.abdomen_ascites) %></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <p>Giordano</p>
+          <span class="badge">Dx <%= boolean(@examination.abdomen_giordan_dx) %></span>
+          <span class="badge">Sx <%= boolean(@examination.abdomen_giordan_sx) %></span>
+        </li>
+      </ul>
+    </div>
+    <!-- END Occhio e cuore -->
+  </div>
+</div>
+
+<div class="container text-center">
+  <% if allowed_to?(:edit?, @examination) %>
+    <%= link_to 'Modifica dati modulo M', edit_examination_path(@examination), class: 'btn btn-primary' %>
+  <% end %>
 </div>

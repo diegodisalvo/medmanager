@@ -3,7 +3,21 @@
   <h5><%= @patient.fullname %></h5>
 </div>
 <div class="container">
-  <div class="small-form">
-    <%= render 'form' %>
+  <%= simple_form_for @patient do |f| %>
+  <div class="form-row">
+    <div class="col-sm-6"><%= f.input :fname, label: 'Nome' %></div>
+    <div class="col-sm-6"><%= f.input :lname, label: 'Cognome' %></div>
   </div>
+  <div class="form-row">
+    <div class="col-sm-6"><%= f.input :fiscalcode, label: 'Codice fiscale' %></div>
+    <div class="col-sm-6"><%= f.input :birth_date, as: :date, start_year: 1900, end_year: Date.today.year, order: [:day, :month, :year], label: 'Data di nascita' %></div>
+  </div>
+  <div class="form-row">
+    <div class="col-sm-6"><%= f.input :address, label: 'Indirizzo' %></div>
+    <div class="col-sm-3"><%= f.input :city, label: 'Città' %></div>
+    <div class="col-sm-3"><%= f.input :province, label: 'Provincia' %></div>
+  </div>
+
+  <%= f.submit 'Salva', class: 'btn btn-primary' %>
+  <% end %>
 </div>

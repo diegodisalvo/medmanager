@@ -1,0 +1,77 @@
+<div class="container mt-5">
+  <div class="row pb-4 border-bottom">
+    <div class="col-sm-8">
+      <h1><%= @user.fullname %></h1>
+    </div>
+    <div class="col-sm-4">
+      <%= link_to 'Modifica dati utente', edit_user_path(@user), class: 'btn btn-primary' %>
+    </div>
+  </div>
+</div>
+
+<div class="container my-4">
+  <div class="row pb-3 border-bottom">
+    <div class="col-sm-3">
+      <h5>Sedi operative</h5>
+      <ul class="list-group">
+        <% @user.locations.each do |location| %>
+          <%= link_to change_location_user_path(location_id: location.id), remote: true, method: :post do %><li class="text-center list-group-item"><%= location.title %></li><% end %>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="col-sm-9">
+
+      <div class="fluid-container my-4 pb-4">
+        <div class="row justify-content-center">
+          <div class="col-sm-3 text-center align-self-center mb-2">
+            <div class="p-3 border">
+              <h3>Ruolo:</h3>
+              <h2><%= @user.role == 'medic' ? 'Medico' : '' %></h2>
+            </div>
+          </div>
+
+          <div class="col-sm-3 text-center align-self-center mb-2">
+            <div class="p-3 border">
+              <h3>Interventi:</h3>
+              <h2><%= @user.examinations.count %></h2>
+            </div>
+          </div>
+
+          <div class="col-sm-3 text-center align-self-center">
+            <div class="p-3 border">
+              <h3>Sedi attuale:</h3>
+              <h2 class="current-location"><%= @user.location.present? ? @user.location.title : 'nd' %></h2>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container my-4">
+  <h2 class="pb-2">Interventi</h2>
+  <table class="table table-striped">
+    <thead>
+      <th>Data</th>
+      <th>Paziente</th>
+      <th>Esito</th>
+      <th>Link</th>
+    </thead>
+    <tbody>
+      <% @user.examinations.each do |exam| %>
+        <tr>
+          <td><%= exam.exam_time %></td>
+          <td><%= exam.patient.fullname %></td>
+          <td><%= exam.result %></td>
+          <td><%= link_to examination_path(exam) do %><%= fa_icon 'arrow-right' %><% end %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

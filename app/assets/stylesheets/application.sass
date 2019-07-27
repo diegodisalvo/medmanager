@@ -16,21 +16,51 @@
 
 @import bootstrap
 @import font_awesome5_webfont
+@import select2
 
-$primary: #3a6990
+$primary: #2e65ad
+$secondary: #4383a2
 
 .yield
   min-height: 65vh
 
+h3
+  font-size: 1.4em
 
 
+.btn
+
+.btn-primary
+  background-color: $primary
+  border-color: $primary
+
+.btn-secondary
+  background-color: $secondary
+  border-color: $secondary
 
 
+.fas
 
+.fas.true
+  font-size: 1.4em
+  color: $primary
 
+.fas.false
+  font-size: 1.4em
+  color: $secondary
 
 .small-form
   max-width: 500px
+
+.list-group-item
+  p
+    width: 70px
+    margin: 0
+
+@media screen and (max-width: 500px)
+  .w-75, .w-50
+    width: 100% !important
+    max-width: 100% !important
 
 .parameters
   input

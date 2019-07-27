@@ -1,0 +1,8 @@
+<%= simple_form_for @user do |f| %>
+  <%= f.input :fname, label: 'Nome' %>
+  <%= f.input :lname, label: 'Cognome' %>
+
+  <%= f.association :locations, label_method: :title %>
+
+  <%= f.submit 'Salva', class: 'btn btn-primary' %>
+<% end %>

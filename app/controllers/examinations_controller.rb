@@ -11,19 +11,38 @@ class ExaminationsController < ApplicationController
   end
 
   def new
-    @examination = Examination.new
-    authorize! @examination
+    if current_user.location.present?
+      @patient = Patient.find(params[:patient_id])
+      @examination = Examination.new
+      authorize! @examination
+    else
+      flash[:alert] = "Prima di procedere è necessario selezionare una sede operativa"
+      redirect_to user_path(current_user)
   end
 
   def create
+    @patient = Patient.find(params[:examination][:patient_id])
+    user = User.find(current_user.id)
     @examination = Examination.new(examination_params)
+    @examination.patient = @patient
+    @examination.user = user
     if @examination.save
       flash[:notice] = "Esame salvato"
       redirect_to examination_path(@examination)
     end
   end
 
+  def edit
+    @examination = Examination.find(params[:id])
+    @patient = @examination.patient
+  end
 
+  def update
+    @examination = Examination.find(params[:id])
+    @examination.update(examination_params)
+    flash[:notice] = "Esame aggiornato correttamente"
+    redirect_to examination_path(@examination)
+  end
 
   private
   def examination_params
@@ -80,7 +99,10 @@ class ExaminationsController < ApplicationController
                                         :urgent,
                                         :patient_id,
                                         :user_id,
-                                        :requested_by
+                                        :requested_by,
+                                        :exam_time,
+                                        :exam_location,
+                                        :location_id
                                       )
   end
 end

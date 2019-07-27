@@ -1,0 +1,6 @@
+<%= simple_form_for @location do |f| %>
+  <%= f.input :title, label: 'Nome della sede' %>
+  <%= f.input :address, label: 'Indirizzo' %>
+
+  <%= f.submit 'Salva', class: 'btn btn-primary' %>
+<% end %>

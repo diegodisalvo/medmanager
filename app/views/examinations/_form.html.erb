@@ -1,5 +1,15 @@
 <%= simple_form_for @examination do |f| %>
   <div class="container">
+    <div class="fluid-container">
+      <%= f.input :patient_id, as: :hidden, input_html: { value: @patient.id } %>
+    </div>
+
+    <div class="form-row">
+      <div class="col-sm-6"><%= f.input :exam_time, as: :datetime, label: 'Data e Ora della visita' %></div>
+      <div class="col-sm-6"><%= f.input :exam_location, collection: ['Ambulatoriale', 'Domiciliare'], include_blank: false, label: 'Data e Ora della visita' %></div>
+
+    </div>
+
     <%= f.input :situation, label: 'Situazione' %>
 
     <div class="row no-gutters parameters">
@@ -8,24 +18,23 @@
       <%= f.input :bpm, label: 'Freq. Card' %>
       <%= f.input :breath_freq, label: 'Freq. Resp' %>
       <%= f.input :temperature, label: 'TC' %>
-      <%= f.input :temperature, label: 'TC' %>
     </div>
     <hr>
     <div class="row no-gutters">
       <div class="col-2 pr-2">
-        <%= f.input :skin, as: :select, collection: ['Normale', 'Pallida', 'Itterica', 'Cianotica'], label: 'Pelle' %>
+        <%= f.input :skin, as: :select, collection: ['Normale', 'Pallida', 'Itterica', 'Cianotica'], include_blank: false, label: 'Pelle' %>
       </div>
       <div class="col-2 pr-2">
-        <%= f.input :hydration, label: 'Idratazione' %>
+        <%= f.input :hydration,  include_blank: false, label: 'Idratazione' %>
       </div>
       <div class="col-2 pr-2">
-        <%= f.input :nutrition, label: 'Stato nutrizionale' %>
+        <%= f.input :nutrition,  include_blank: false, label: 'Stato nutrizionale' %>
       </div>
       <div class="col-2 pr-2">
-        <%= f.input :diuresis, label: 'Diuresi' %>
+        <%= f.input :diuresis,  include_blank: false, label: 'Diuresi' %>
       </div>
       <div class="col-2">
-        <%= f.input :alvo, label: 'Alvo' %>
+        <%= f.input :alvo,  include_blank: false, label: 'Alvo' %>
       </div>
     </div>
     <hr>
@@ -33,40 +42,180 @@
     <!-- EO Apparati -->
     <div class="row">
       <!-- Neuro -->
-      <div class="col-4">
+      <div class="col-md-4 mb-3">
         <div class="border p-2">
           <h5>Sistema Nervoso</h5>
-          <hr>
-          <%= f.input :nerv_normal, as: :boolean, label: 'Normale' %>
-          <%= f.input :nerv_cosc_clouded, as: :boolean, label: 'Coscenza obnubilata' %>
-          <%= f.input :nerv_cosc_absent, as: :boolean, label: 'Coscenza assente' %>
-          <%= f.input :nerv_convulsion, as: :boolean, label: 'Convulsioni' %>
-          <%= f.input :nerv_romberg, as: :boolean, label: 'Romberg' %>
-          <%= f.input :nerv_rigor, as: :boolean, label: 'Rigor Nucalis' %>
-          <%= f.input :nerv_motor_deficit, as: :boolean, label: 'Defici Motorio' %>
-          <%= f.input :nerv_sens_deficit, as: :boolean, label: 'Defici Sensitivo' %>
+          <div class="row">
+            <div class="col-10"><p>Normale</p></div>
+            <div class="col-2"><%= f.input :nerv_normal, as: :boolean, label: false %></div>
+          </div>
+          <div class="row">
+            <div class="col-10"><p>Coscenza alterata</p></div>
+            <div class="col-2"><%= f.input :nerv_cosc_clouded, as: :boolean, label: false %></div>
+          </div>
+          <div class="row">
+            <div class="col-10"><p>Coscenza assente</p></div>
+            <div class="col-2"><%= f.input :nerv_cosc_absent, as: :boolean, label: false %></div>
+          </div>
+          <div class="row">
+            <div class="col-10"><p>Convulsioni</p></div>
+            <div class="col-2"><%= f.input :nerv_convulsion, as: :boolean, label: false %></div>
+          </div>
+          <div class="row">
+            <div class="col-10"><p>Romberg</p></div>
+            <div class="col-2"><%= f.input :nerv_romberg, as: :boolean, label: false %></div>
+          </div>
+          <div class="row">
+            <div class="col-10"><p>Rigor nucalis</p></div>
+            <div class="col-2"><%= f.input :nerv_rigor, as: :boolean, label: false %></div>
+          </div>
+          <div class="row">
+            <div class="col-10"><p>Deficit motorio</p></div>
+            <div class="col-2"><%= f.input :nerv_motor_deficit, as: :boolean, label: false %></div>
+          </div>
+          <div class="row">
+            <div class="col-10"><p>Deficit motorio</p></div>
+            <div class="col-2"><%= f.input :nerv_sens_deficit, as: :boolean, label: false %></div>
+          </div>
         </div>
       </div>
       <!-- END Neuro -->
 
       <!-- Occhi e cardio -->
-      <div class="col-4">
+      <div class="col-md-4 mb-3">
         <div class="border p-2">
-
+          <div class="row">
+            <div class="col-8"><h5>Pupille</h5></div>
+            <div class="col-2"><p>Dx</p></div>
+            <div class="col-2"><p>Sx</p></div>
+          </div>
+          <div class="row">
+            <div class="col-8"><p>Normali</p></div>
+            <div class="col-2"><%= f.input :pupils_normal_dx, label: false %></div>
+            <div class="col-2"><%= f.input :pupils_normal_sx, label: false %></div>
+          </div>
+          <div class="row">
+            <div class="col-8"><p>Miosi</p></div>
+            <div class="col-2"><%= f.input :pupils_miosis_dx, label: false %></div>
+            <div class="col-2"><%= f.input :pupils_miosis_sx, label: false %></div>
+          </div>
+          <div class="row">
+            <div class="col-8"><p>Midriasi</p></div>
+            <div class="col-2"><%= f.input :pupils_mydr_dx, label: false %></div>
+            <div class="col-2"><%= f.input :pupils_mydr_sx, label: false %></div>
+          </div>
+          <div class="row">
+            <div class="col-8"><p>R. Fotomotori</p></div>
+            <div class="col-2"><%= f.input :pupils_fotoreflex_dx, label: false %></div>
+            <div class="col-2"><%= f.input :pupils_fotoreflex_sx, label: false %></div>
+          </div>
+          <div class="row">
+            <div class="col-8"><p>Nistagmo</p></div>
+            <div class="col-2"><%= f.input :pupils_nystagmus_dx, label: false %></div>
+            <div class="col-2"><%= f.input :pupils_nystagmus_sx, label: false %></div>
+          </div>
+        </div>
+        <div class="border mt-3 p-2">
+          <div class="row">
+            <div class="col-8"><h5>App Respiratorio</h5></div>
+            <div class="col-2"><p>Dx</p></div>
+            <div class="col-2"><p>Sx</p></div>
+          </div>
+          <div class="row">
+            <div class="col-8"><p>Indenne</p></div>
+            <div class="col-2"><%= f.input :lung_normal_dx, label: false %></div>
+            <div class="col-2"><%= f.input :lung_normal_sx, label: false %></div>
+          </div>
+          <div class="row">
+            <div class="col-8"><p>Rumori</p></div>
+            <div class="col-2"><%= f.input :lung_rumor_dx, label: false %></div>
+            <div class="col-2"><%= f.input :lung_rumor_sx, label: false %></div>
+          </div>
+          <div class="row">
+            <div class="col-8"><p>Rumori secchi</p></div>
+            <div class="col-2"><%= f.input :lung_dry_rumor_dx, label: false %></div>
+            <div class="col-2"><%= f.input :lung_dry_rumor_sx, label: false %></div>
+          </div>
+          <div class="row">
+            <div class="col-8"><p>Rumori secchi</p></div>
+            <div class="col-2"><%= f.input :lung_emphysema_dx, label: false %></div>
+            <div class="col-2"><%= f.input :lung_emphysema_sx, label: false %></div>
+          </div>
         </div>
       </div>
       <!-- END Occhi e cardio -->
 
       <!-- Cuore e addome -->
-      <div class="col-4">
+      <div class="col-md-4 mb-3">
         <div class="border p-2">
+          <h5>App. Cardiocircolatorio</h5>
+          <div class="row">
+            <div class="col-10"><p>Normale</p></div>
+            <div class="col-2"><%= f.input :heart_normal, as: :boolean, label: false %></div>
+          </div>
+          <div class="row">
+            <div class="col-10"><p>Aritmia</p></div>
+            <div class="col-2"><%= f.input :heart_arhythmia, as: :boolean, label: false %></div>
+          </div>
+          <div class="row">
+            <div class="col-10"><p>Cianosi</p></div>
+            <div class="col-2"><%= f.input :heart_cyanosis, as: :boolean, label: false %></div>
+          </div>
+          <div class="row">
+            <div class="col-10"><p>Edemi</p></div>
+            <div class="col-2"><%= f.input :heart_edema, as: :boolean, label: false %></div>
+          </div>
+        </div>
 
+        <div class="border mt-3 p-2">
+          <h5>Addome</h5>
+          <div class="row">
+            <div class="col-10"><p>Murphy</p></div>
+            <div class="col-2"><%= f.input :abdomen_murphy, as: :boolean, label: false %></div>
+          </div>
+          <div class="row">
+            <div class="col-10"><p>Blumberg</p></div>
+            <div class="col-2"><%= f.input :abdomen_blumberg, as: :boolean, label: false %></div>
+          </div>
+          <div class="row">
+            <div class="col-10"><p>Rovsing</p></div>
+            <div class="col-2"><%= f.input :abdomen_rovsing, as: :boolean, label: false %></div>
+          </div>
+          <div class="row">
+            <div class="col-10"><p>Ascite</p></div>
+            <div class="col-2"><%= f.input :abdomen_ascites, as: :boolean, label: false %></div>
+          </div>
+          <div class="row">
+            <div class="col-7"><p>Rumori secchi</p></div>
+            <div class="col-2"><%= f.input :abdomen_giordan_dx, label: 'Dx' %></div>
+            <div class="col-2"><%= f.input :abdomen_giordan_sx, label: 'Sx' %></div>
+          </div>
         </div>
       </div>
       <!-- Cuore e addome -->
 
     </div>
     <!-- END EO Apparati -->
+
+    <div class="fluid-container my-3">
+      <%= f.input :other, label: 'Altro' %>
+    </div>
+
+    <div class="fluid-container my-3">
+      <%= f.input :therapy, label: 'Terapia e Diagnosi' %>
+    </div>
+
+    <div class="fluid-container my-3">
+      <div class="row">
+        <div class="col-sm-6 align-self-center">
+          <%= f.input :result, collection: ['Paziente rinviato o mantenuto al domicilio', 'Disposto ricovero', 'Trasporto con mezzo proprio', 'Inviato in PS tramite 112'] %>
+        </div>
+        <div class="col-sm-6 align-self-center">
+          <%= f.input :urgent, label: "Spuntare se l'intervento non presentava carattere di prestazione non differibile", as: :boolean %>
+        </div>
+      </div>
+    </div>
+
   </div>
 
 

@@ -24,7 +24,7 @@
       <% @examinations.each do |examination| %>
         <tr>
           <td><%= examination.id %></td>
-          <td><%= examination.created_at %></td>
+          <td><%= l examination.exam_time, format: :long, locale: :'it' %></td>
           <td><%= examination.patient.fullname %></td>
         </tr>
       <% end %>

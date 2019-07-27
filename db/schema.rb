@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_26_210114) do
+ActiveRecord::Schema.define(version: 2019_07_27_233106) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,13 +46,13 @@ ActiveRecord::Schema.define(version: 2019_07_26_210114) do
     t.boolean "pupils_fotoreflex_dx", default: false
     t.boolean "pupils_nystagmus_dx", default: false
     t.boolean "lung_normal_sx", default: true
-    t.boolean "lung_rumor_sx", default: true
-    t.boolean "lung_dry_rumor_sx", default: true
-    t.boolean "lung_emphysema_sx", default: true
+    t.boolean "lung_rumor_sx", default: false
+    t.boolean "lung_dry_rumor_sx", default: false
+    t.boolean "lung_emphysema_sx", default: false
     t.boolean "lung_normal_dx", default: true
-    t.boolean "lung_rumor_dx", default: true
-    t.boolean "lung_dry_rumor_dx", default: true
-    t.boolean "lung_emphysema_dx", default: true
+    t.boolean "lung_rumor_dx", default: false
+    t.boolean "lung_dry_rumor_dx", default: false
+    t.boolean "lung_emphysema_dx", default: false
     t.boolean "heart_normal", default: true
     t.boolean "heart_arhythmia", default: false
     t.boolean "heart_cyanosis", default: false
@@ -72,8 +72,24 @@ ActiveRecord::Schema.define(version: 2019_07_26_210114) do
     t.string "requested_by", default: ""
     t.integer "patient_id"
     t.integer "user_id"
+    t.datetime "exam_time"
+    t.string "exam_location", default: "Ambulatoriale"
+    t.integer "location_id"
+    t.index ["location_id"], name: "index_examinations_on_location_id"
     t.index ["patient_id"], name: "index_examinations_on_patient_id"
     t.index ["user_id"], name: "index_examinations_on_user_id"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "title", default: ""
+    t.string "address", default: ""
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "locations_users", id: false, force: :cascade do |t|
+    t.bigint "location_id", null: false
+    t.bigint "user_id", null: false
   end
 
   create_table "patients", force: :cascade do |t|
@@ -87,6 +103,7 @@ ActiveRecord::Schema.define(version: 2019_07_26_210114) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "phone", default: ""
     t.string "gender", default: "M"
+    t.date "birth_date"
   end
 
   create_table "users", force: :cascade do |t|
@@ -97,7 +114,12 @@ ActiveRecord::Schema.define(version: 2019_07_26_210114) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "fname", default: ""
+    t.string "lname", default: ""
+    t.string "role", default: "medic"
+    t.integer "location_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["location_id"], name: "index_users_on_location_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
