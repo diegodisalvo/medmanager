@@ -69,6 +69,8 @@ GEM
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 1.14.3, < 2)
       sassc-rails (>= 2.0.0)
+    bootstrap-datepicker-rails (1.8.0.1)
+      railties (>= 3.0)
     builder (3.2.3)
     byebug (11.0.1)
     capybara (3.26.0)
@@ -79,6 +81,7 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (~> 1.5)
       xpath (~> 3.2)
+    chartkick (3.2.1)
     childprocess (1.0.1)
       rake (< 13.0)
     concurrent-ruby (1.1.5)
@@ -98,6 +101,8 @@ GEM
       railties (>= 4.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    groupdate (4.1.2)
+      activesupport (>= 4.2)
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
     jbuilder (2.9.1)
@@ -254,11 +259,14 @@ DEPENDENCIES
   action_policy
   bootsnap (>= 1.4.2)
   bootstrap (~> 4.3.1)
+  bootstrap-datepicker-rails
   byebug
   capybara (>= 2.15)
+  chartkick
   devise
   faker
   font_awesome5_rails
+  groupdate
   jbuilder (~> 2.7)
   jquery-rails
   listen (>= 3.0.5, < 3.2)

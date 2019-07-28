@@ -2,3 +2,28 @@
   <h1><%= @location.title %></h1>
   <p>Indirizzo: <%= @location.address %></p>
 </div>
+
+<div class="container my-5">
+  <h2>Reports</h2>
+  <div class="container my-4">
+    <div class="row">
+
+      <div class="col-sm-4 text-center">
+        <div class="p-3 border">
+          <h3>Numero di accessi:</h3>
+          <h1><%= @nExams %></h1>
+        </div>
+      </div>
+
+      <div class="col-sm-4 text-center">
+        <div class="p-3 border">
+          <h3>Altre statistiche</h3>
+          <h1>12</h1>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <%= area_chart @exams, label: 'Esami al giorno', xtitle: "Giorni", ytitle: "N. Esami", download: { filename: 'Gromo' } %>
+  <p class="text-right">NB: il grafico può essere salvato come immagine</p>
+</div>

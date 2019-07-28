@@ -7,6 +7,8 @@ class LocationsController < ApplicationController
 
   def show
     @location = Location.find(params[:id])
+    @exams = @location.examinations.group_by_day(:exam_time).count
+    @nExams = @location.examinations.joins(:patient).count(:patient_id)
   end
 
   def new

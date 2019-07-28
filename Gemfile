@@ -35,8 +35,12 @@ gem 'font_awesome5_rails'
 gem 'action_policy'
 gem 'select2-rails'
 gem 'underscore-rails'
+gem 'bootstrap-datepicker-rails'
 
 gem 'rails-i18n'
+
+gem 'groupdate'
+gem 'chartkick'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
