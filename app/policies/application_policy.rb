@@ -2,7 +2,9 @@ class ApplicationPolicy < ActionPolicy::Base
   authorize :user, allow_nil: true
 
   def index?
-    user.is_admin? || user.is_medic? 
+    if user.present?
+      user.is_admin? || user.is_medic?
+    end
   end
 
   def show?

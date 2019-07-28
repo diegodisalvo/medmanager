@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :patients do
     collection do
       get :home
+      get :start
       get :search
     end
     member do
@@ -13,6 +14,9 @@ Rails.application.routes.draw do
       post :destory
     end
   end
+
+  get 'inizio', to: 'patients#start', as: 'inizio'
+  get 'home', to: 'patients#home', as: 'home'
 
   resources :examinations do
     member do

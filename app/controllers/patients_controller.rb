@@ -1,8 +1,15 @@
 class PatientsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:index, :search, :show, :edit, :create, :update, :delete, :destroy]
   require 'json'
   require 'open-uri'
+
+  def start
+  end
+
   def home
+    if !user_signed_in?
+      redirect_to start_patients_path
+    end
   end
 
   def index
