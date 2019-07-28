@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_many :examinations
   has_and_belongs_to_many :locations
-  belongs_to :location
+  belongs_to :location, optional: true
 
   def fullname
     if fname.present? && lname.present?
