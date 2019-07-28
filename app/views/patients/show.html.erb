@@ -1,4 +1,4 @@
-<div class="container my-5">
+<div class="container mt-5 mb-3">
   <div class="row">
     <div class="col-4 align-self-center">
       <p class="m-0 p-0">Scheda paziente</p>
@@ -21,8 +21,34 @@
   <hr>
 </div>
 
-<div class="container my-5">
-  <p>Dati del paziente</p>
+<div class="container my-3">
+  <h3>Dati paziente</h3>
+  <div class="row mt-3">
+    <div class="col-sm-2 text-center">
+      <div class="p-3 border shadow">
+        <p class="border-bottom">Sesso</p>
+        <h4><%= @patient.gender %></h4>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="p-3 border shadow">
+        <p class="border-bottom">Data di nascita</p>
+        <h4><%= l @patient.birth_date, format: :long %> | <%= @patient.age %> anni</h4>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="p-3 border shadow">
+        <p class="border-bottom">Codice fiscale</p>
+        <h4><%= @patient.fiscalcode %></h4>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="p-3 border shadow">
+        <p class="border-bottom">Città</p>
+        <h4><%= @patient.city %></h4>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="container my-5">

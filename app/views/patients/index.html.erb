@@ -1,15 +1,25 @@
 <div class="container my-5">
-  <h1>Pazienti</h1>
+  <%= simple_form_for :search, url: patients_path, method: :get do |f| %>
+  <div class="form-row w-75 mx-auto">
+    <h1>Pazienti</h1>
+    <div class="col-11"><%= f.input :query, label: false, placeholder: 'Cerca un paziente per nome o cognome' %></div>
+    <div class="col-1"><%= f.submit 'Cerca', class: 'btn btn-primary' %></div>
+  </div>
+  <% end %>
 </div>
 
+<% if !@patients.blank? %>
 <div class="container">
   <table class="table table-striped">
     <thead>
       <th class="d-none d-md-block">Id</th>
       <th>Nome</th>
       <th>Cognome</th>
-      <th>Link</th>
-      <th>Modifica</th>
+      <th>Codice fiscale</th>
+      <th>Città</th>
+      <th>Ultimo accesso</th>
+      <th width="50">Link</th>
+      <th width="70">Modifica</th>
     </thead>
     <tbody>
       <% @patients.each do |patient| %>
@@ -17,6 +27,9 @@
           <td class="d-none d-md-block"><%= patient.id %></td>
           <td><%= patient.fname %></td>
           <td><%= patient.lname %></td>
+          <td><%= patient.fiscalcode %></td>
+          <td><%= patient.city %></td>
+          <td><%= patient.examinations.order(exam_time: :desc).first.present? ? l(patient.examinations.order(exam_time: :desc).first.exam_time, format: :long) : 'nd' %></td>
           <td><%= link_to patient_path(patient) do %><%= fa_icon 'link' %><% end %></td>
           <td><%= link_to edit_patient_path(patient) do %><%= fa_icon 'pencil-alt' %><% end %></td>
         </tr>
@@ -24,3 +37,4 @@
     </tbody>
   </table>
 </div>
+<% end %>

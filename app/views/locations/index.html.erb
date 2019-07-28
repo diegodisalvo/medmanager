@@ -3,7 +3,7 @@
     <div class="col-sm-8">
       <h1>Sedi operative</h1>
     </div>
-    <div class="col-sm-4 align-self-center">
+    <div class="col-sm-4 align-self-center text-center text-md-right">
       <% if allowed_to?(:new?) %>
         <%= link_to 'Aggiungi sede operativa', new_location_path, class: 'btn btn-primary' %>
       <% end %>
@@ -17,6 +17,7 @@
     <thead>
       <th>Sede</th>
       <th>Indirizzo</th>
+      <th>N. medici</th>
       <th>Link</th>
       <th>Modifica</th>
     </thead>
@@ -25,8 +26,9 @@
         <tr>
           <td><%= location.title %></td>
           <td><%= location.address %></td>
+          <td><%= location.users.where(role: 'medic').count %></td>
           <td><%= link_to location_path(location) do %><%= fa_icon 'arrow-right' %><% end %></td>
-          <td><%= link_to edit_location_path(location) do %><%= fa_icon 'pencil' %><% end %></td>
+          <td><%= link_to edit_location_path(location) do %><%= fa_icon 'pencil-alt' %><% end %></td>
         </tr>
       <% end %>
     </tbody>

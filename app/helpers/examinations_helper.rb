@@ -3,7 +3,7 @@ module ExaminationsHelper
     if var
       fa_icon 'check-circle', class: 'true'
     else
-      fa_icon 'times-circle', class: 'false'
+      far_icon 'circle', class: 'false'
     end
   end
 end

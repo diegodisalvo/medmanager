@@ -1,14 +1,8 @@
-<div class="container my-5">
-  <div class="w-50 mx-auto">
-    <h1>Ricerca paziente</h1>
-
-  </div>
-</div>
-
 <div class="container my-5 w-50">
-  <p>Cerca il paziente inserendo il suo codice fiscale</p>
+  <h1 class="pb-4">Ricerca paziente</h1>
+  <p>Cerca il paziente inserendo il suo nome e cognome</p>
   <%= simple_form_for :search, url: search_patients_path, method: :get, remote: true do |f| %>
-    <%= f.input :query, label: 'Cerca usando il codice fiscale' %>
+    <%= f.input :query, label: false, placeholder: 'Codice fiscale', as: :select %>
     <div class="fluid-container">
       <%= f.submit 'Cerca', class: 'btn btn-primary px-5' %>
       <%= link_to 'Nuovo paziente', new_patient_path, class: 'btn btn-secondary' %>
@@ -17,3 +11,30 @@
 </div>
 
 <div class="container my-5 w-75" id="search-results"></div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#search_query').select2({
+      ajax: {
+        url: "<%= patients_path(format: 'json') %>",
+        dataType: "json",
+        delay: 250,
+        data: function (params) {
+          var queryParameters = {
+            q: params.term
+          }
+          return queryParameters;
+        },
+        processResults: function (data) {
+          // Transforms the top-level key of the response object from 'items' to 'results'
+          return {
+            results: $.map( data, function(patient, i) {
+              return { id: patient.fiscalcode, text: patient.name }
+            })
+          };
+        },
+      }
+        // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
+    });
+  });
+</script>

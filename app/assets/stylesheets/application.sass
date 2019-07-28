@@ -17,15 +17,23 @@
 @import bootstrap
 @import font_awesome5_webfont
 @import select2
+@import aos
 
-$primary: #2e65ad
+$primary: #2ead65
 $secondary: #4383a2
+
+body
+  font-family: 'Quicksand', sans-serif
 
 .yield
   min-height: 65vh
 
 h3
   font-size: 1.4em
+
+h4
+  font-size: 1.3em
+  font-weight: 300
 
 .navbar
   margin: 0
@@ -68,17 +76,28 @@ h3
   font-size: 1.4em
   color: $primary
 
-.fas.false
+.fas.false, .far.false
   font-size: 1.4em
   color: $secondary
 
 .small-form
   max-width: 500px
 
+.select2-selection
+  height: 40px !important
+  padding-top: 0.3em
+
 .list-group-item
   p
     width: 70px
     margin: 0
+
+.alert
+  max-width: 500px
+  width: 350px
+  position: absolute
+  top: 60px
+  right: 10px
 
 @media screen and (max-width: 500px)
   .w-75, .w-50

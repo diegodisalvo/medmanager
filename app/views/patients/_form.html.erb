@@ -1,8 +1,9 @@
 <div class="fluid-container">
   <%= simple_form_for :patient, url: '../patients', authenticity_token: true, remote: true, method: :post do |f| %>
   <div class="form-row">
-    <div class="col-sm-6"><%= f.input :fname, label: 'Nome' %></div>
-    <div class="col-sm-6"><%= f.input :lname, label: 'Cognome' %></div>
+    <div class="col-sm-5"><%= f.input :fname, label: 'Nome' %></div>
+    <div class="col-sm-5"><%= f.input :lname, label: 'Cognome' %></div>
+    <div class="col-sm-2"><%= f.input :gender, collection: ['M', 'F'], label: 'Sesso', include_blank: false %></div>
   </div>
   <div class="form-row">
     <div class="col-sm-6"><%= f.input :fiscalcode, label: 'Codice fiscale' %></div>
@@ -10,8 +11,9 @@
   </div>
   <div class="form-row">
     <div class="col-sm-6"><%= f.input :address, label: 'Indirizzo' %></div>
-    <div class="col-sm-3"><%= f.input :city, label: 'Città' %></div>
-    <div class="col-sm-3"><%= f.input :province, label: 'Provincia' %></div>
+    <div class="col-sm-3"><%= f.input :city, as: :select, label: 'Città' %></div>
+    <div class="col-sm-3"><%= f.input :province, as: :select, label: 'Provincia' %></div>
+
   </div>
 
   <% if :after_form %>
@@ -20,3 +22,10 @@
   <%= f.submit 'Salva', class: 'btn btn-primary' %>
   <% end %>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#patient_province').select2();
+    $('#patient_city').select2();
+  })
+</script>

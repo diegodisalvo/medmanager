@@ -18,14 +18,17 @@ class ExaminationsController < ApplicationController
     else
       flash[:alert] = "Prima di procedere è necessario selezionare una sede operativa"
       redirect_to user_path(current_user)
+    end
   end
 
   def create
     @patient = Patient.find(params[:examination][:patient_id])
     user = User.find(current_user.id)
+    location = Location.find(current_user.location.id)
     @examination = Examination.new(examination_params)
     @examination.patient = @patient
     @examination.user = user
+    @examination.location = location
     if @examination.save
       flash[:notice] = "Esame salvato"
       redirect_to examination_path(@examination)

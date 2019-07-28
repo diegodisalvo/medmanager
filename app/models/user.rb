@@ -16,4 +16,22 @@ class User < ApplicationRecord
     end
   end
 
+  def is_admin?
+    if role == "admin"
+      return true
+    end
+  end
+
+  def is_medic?
+    if role == "medic"
+      return true
+    end
+  end
+
+  def is_manager?
+    if role == "manager"
+      return true
+    end
+  end
+
 end

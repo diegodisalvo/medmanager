@@ -1,0 +1,45 @@
+<div class="jumbotron mb-5 text-center">
+  <h1>ATS Expert</h1>
+  <p><%= current_user.fullname %> • <%= current_user.role.capitalize %></p>
+</div>
+<div class="container my-5">
+  <div class="row">
+
+    <div class="col-sm-4">
+      <div class="card shadow">
+        <div class="card-header">
+          <h3>Sede operativa</h3>
+        </div>
+        <div class="card-body">
+          <p class="card-text">Prima di iniziare le attività, ricordarsi di selezionare la propria sede operativa</p>
+          <%= link_to 'Cambia sede operativa', user_path(current_user), class: 'btn btn-primary' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="card shadow">
+        <div class="card-header">
+          <h3>Ricerca paziente</h3>
+        </div>
+        <div class="card-body">
+          <p class="card-text">Cerca un paziente inserendo nome, cognome o entrambi</p>
+          <%= link_to 'Ricerca paziente', patients_path, class: 'btn btn-primary' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="card shadow">
+        <div class="card-header">
+          <h3>Nuovo Modulo M</h3>
+        </div>
+        <div class="card-body">
+          <p class="card-text">Trova il paziente tramite codice fiscale e compila il modulo M</p>
+          <%= link_to 'Nuovo modulo M', search_patients_path, class: 'btn btn-primary' %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

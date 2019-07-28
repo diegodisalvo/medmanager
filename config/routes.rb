@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  root "patients#index"
+  root "patients#home"
 
   resources :patients do
     collection do
-      get :autocomplete_patient_lname
+      get :home
       get :search
     end
     member do

@@ -1,14 +1,29 @@
 class PatientsController < ApplicationController
   before_action :authenticate_user!
-  autocomplete :patient, :lname
+  require 'json'
+  require 'open-uri'
+  def home
+  end
 
   def index
     @patients = Patient.order(lname: :asc)
+    if params.has_key?(:q)
+      @patients = Patient.search_name(params[:q])
+    end
+    if params.has_key?(:search)
+      @patients = Patient.search_name(params[:search][:query]).order(lname: :asc)
+    end
+    authorize!
+
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def search
     if params.has_key?(:search)
-      @patients = Patient.search(params[:search][:query]).order(lname: :asc)
+      @patients = Patient.search_fiscalcode(params[:search][:query]).order(lname: :asc)
       respond_to do |format|
         format.js do
           if @patients.blank?
@@ -20,6 +35,7 @@ class PatientsController < ApplicationController
         end
       end
     end
+    authorize!
   end
 
   def show

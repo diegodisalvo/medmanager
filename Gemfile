@@ -27,6 +27,7 @@ gem 'jbuilder', '~> 2.7'
 
 gem 'devise'
 gem 'simple_form'
+gem 'city-state'
 gem 'faker'
 gem 'rails-autocomplete'
 gem 'bootstrap', '~> 4.3.1'
@@ -36,7 +37,6 @@ gem 'action_policy'
 gem 'select2-rails'
 gem 'underscore-rails'
 gem 'bootstrap-datepicker-rails'
-
 gem 'rails-i18n'
 
 gem 'groupdate'

@@ -1,15 +1,16 @@
-<div class="container mt-3 border">
-  <div class="row">
-    <div class="col-sm-6 p-2">
-      <h2><%= patient.fullname %></h2>
+<div class="container mt-3 w-75">
+  <div class="row p-2 border shadow">
+    <div class="col-sm-5 p-4 align-self-center">
+      <h2><%= link_to patient.fullname, patient_path(patient) %></h2>
       <p><%= patient.fiscalcode %></p>
+      <p><%= l patient.birth_date, format: :long %> - <%= patient.age %> anni</p>
     </div>
-    <div class="col-sm-6 p-2">
+    <div class="col-sm-4 p-4 align-self-center text-center border-left border-right">
       <p>Numero di accessi</p>
+      <h1><%= patient.examinations.count %></h1>
     </div>
-    <hr>
+    <div class="col-sm-3 align-self-center text-center">
+      <%= link_to 'Nuovo accesso', new_examination_path(patient_id: patient.id), class: 'btn btn-primary' %>
+    </div>
   </div>
-    <div class="row justify-content-center p-2">
-      <%= link_to 'Nuovo accesso', new_examination_path(patient_id: patient.id) %>
-    </div>
 </div>
