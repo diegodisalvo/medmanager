@@ -52,6 +52,29 @@
 </div>
 
 <div class="container my-5">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="p-3 border">
+        <h3>Anamnesi</h3>
+        <p class="p-0 m-0"><%= @patient.anamnesis %></p>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="p-3 border">
+        <h3>Esame Obiettivo</h3>
+        <p class="p-0 m-0"><%= @patient.eo %></p>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="p-3 border">
+        <h3>Note</h3>
+        <p class="p-0 m-0"><%= @patient.notes %></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container my-5">
   <h3 class="pb-3">Accessi del paziente: <%= @patient.examinations.count %></h3>
   <table class="table table-striped">
     <thead>
