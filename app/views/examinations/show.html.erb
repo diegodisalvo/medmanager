@@ -24,9 +24,17 @@
     <div class="col-sm-4 align-self-center px-4 text-md-right">
       <p class="m-0">Compilato dal medico</p>
       <h4><%= @examination.user.email %></h4>
+      <%= link_to examination_path(@examination, format: 'pdf'), class: 'btn btn-primary', target: '_blank' do %><%= fa_icon 'file-pdf' %><% end %>
     </div>
   </div>
 </div>
+
+<% if @examination.exam_address.present? %>
+  <div class="container mb-5">
+    <h3>Località</h3>
+    <p><%= @examination.exam_address %></p>
+  </div>
+<% end %>
 
 <div class="container bg-light p-4">
   <div class="row">

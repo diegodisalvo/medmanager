@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_27_233106) do
+ActiveRecord::Schema.define(version: 2019_08_04_153909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 2019_07_27_233106) do
     t.datetime "exam_time"
     t.string "exam_location", default: "Ambulatoriale"
     t.integer "location_id"
+    t.string "exam_address", default: ""
     t.index ["location_id"], name: "index_examinations_on_location_id"
     t.index ["patient_id"], name: "index_examinations_on_patient_id"
     t.index ["user_id"], name: "index_examinations_on_user_id"
@@ -104,6 +105,9 @@ ActiveRecord::Schema.define(version: 2019_07_27_233106) do
     t.string "phone", default: ""
     t.string "gender", default: "M"
     t.date "birth_date"
+    t.text "anamnesis", default: ""
+    t.text "eo", default: ""
+    t.text "notes", default: ""
   end
 
   create_table "users", force: :cascade do |t|

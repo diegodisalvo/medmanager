@@ -94,7 +94,10 @@ class PatientsController < ApplicationController
                                     :address,
                                     :city,
                                     :province,
-                                    :birth_date
+                                    :birth_date,
+                                    :anamnesis,
+                                    :eo,
+                                    :notes
                                   )
   end
 end

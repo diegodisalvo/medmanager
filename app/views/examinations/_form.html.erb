@@ -7,7 +7,10 @@
     <div class="form-row">
       <div class="col-sm-6"><%= f.input :exam_time, as: :datetime, label: 'Data e Ora della visita' %></div>
       <div class="col-sm-6"><%= f.input :exam_location, collection: ['Ambulatoriale', 'Domiciliare'], include_blank: false, label: 'Data e Ora della visita' %></div>
+    </div>
 
+    <div class="form-row">
+      <div class="col-sm-12"><%= f.input :exam_address, placeholder: 'Indirizzo e città della visita' %></div>
     </div>
 
     <%= f.input :situation, label: 'Situazione' %>

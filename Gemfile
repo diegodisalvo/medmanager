@@ -38,6 +38,7 @@ gem 'select2-rails'
 gem 'underscore-rails'
 gem 'bootstrap-datepicker-rails'
 gem 'rails-i18n'
+gem 'prawn'
 
 gem 'groupdate'
 gem 'chartkick'

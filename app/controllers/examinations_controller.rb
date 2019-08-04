@@ -8,6 +8,15 @@ class ExaminationsController < ApplicationController
 
   def show
     @examination = Examination.find(params[:id])
+    respond_to do |format|
+      format.html
+
+      format.pdf do
+        pdf = ExaminationPdf.new(@examination)
+        send_data pdf.render, filename: 'moduloM.pdf', type: 'application/pdf', disposition: 'inline'
+      end
+
+    end
   end
 
   def new
@@ -105,7 +114,8 @@ class ExaminationsController < ApplicationController
                                         :requested_by,
                                         :exam_time,
                                         :exam_location,
-                                        :location_id
+                                        :location_id,
+                                        :exam_address
                                       )
   end
 end
