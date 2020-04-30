@@ -11,7 +11,7 @@
     "chart.js": "^2.8.0",
     "chartkick": "^3.1.1",
     "font-awesome-5-css": "^5.4.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "moment-js": "^1.1.15",
     "popper.js": "^1.15.0",
     "rails-ujs": "^5.2.3",
